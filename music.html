@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="css/music.css"/>
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script src="js/bd_share.js"></script>
+    <script src="js/voice.js"></script>
+    <script src="js/voice-now.js"></script>
+    <script src="js/jquery.jplayer.js"></script>
+    <script type="text/javascript" src="js/jquery.jplayer.lyric.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $(".change").click(function () {
+                $.ajax({
+                    type: 'get',
+                    url: 'http://fm.api.ttpod.com/dyntags?tagtype=json&callback=jsonp_dyntags&_=1417421795404',
+                    dataType: "jsonp",
+                    jsonp: "callback",
+                    jsonpCallback: "success_jsonpCallback",
+                    success: function (json) {
+                        alert('json:' + json);
+                    },
+                    error: function () {
+                        alert('fail');
+                    }
+                })
+            })
+        });
+
+
+    </script>
+</head>
+<body>
+<div id="bg-music"><img src="images//235078-13031ZI62959.jpg"></div>
+<div id="all-head">
+    <div id="head">
+        <span id="music-main">音乐风云榜</span>
+        <span id="now">当前频道：华语</span>
+        <span class="change">换台(乐库&电台)</span>
+        <span class="change1" style="display: none">返回</span>
+
+        <div id="tit">
+            <div id="player-left">
+                <div id="singer"><img src="images//jj.jpg"></div>
+                <div id="voice">
+                    <span id="no-voice" title="静音"></span>
+                    <span id="no-voice1" style="display: none" title="取消静音"></span>
+                    <span id="volumeBg">
+                          <span class="fg"></span>
+                    </span>
+
+                    <span id="start" title="正在播放，点击暂停" onclick="player.stopPlayer()"></span>
+                    <span id="start1" style="display: none" title="继续播放" onclick="player.startPlayer()"></span>
+                    <span id="qie" title="切歌"></span>
+
+                </div>
+            </div>
+            <textarea class="lrc_content" style="display:none;">
+                [ti:曹操]
+                [ar:林俊杰]
+                [al:曹操]
+                [00:00.03]林俊杰-《曹操》
+                [00:13.35]作词：林秋离
+                [00:20.12]作曲：林俊杰
+                [00:25.32]
+                [01:33.46][00:26.82]不是英雄 不读三国
+                [01:40.12][00:33.43]若是英雄 怎么能不懂寂寞
+                [02:39.68][01:46.34][00:39.63]独自走下长坂坡 月光太温柔
+                [02:43.20][01:49.82][00:43.15]曹操不啰嗦 一心要那荆州
+                [02:46.75][01:53.48][00:46.83]用阴谋 阳谋 明说 暗夺的摸
+                [02:53.44][02:00.10][00:53.50]东汉末年分三国
+                [02:56.37][02:03.15][00:56.52]烽火连天不休
+                [03:00.12][02:06.75][01:00.17]儿女情长 被乱世左右
+                [03:05.04][02:11.71][01:05.12]谁来煮酒
+                [03:06.78][02:13.45][01:06.84]尔虞我诈是三国
+                [03:09.85][02:16.43][01:09.73]说不清对与错
+                [03:13.38][02:20.11][01:13.48]纷纷扰扰 千百年以後
+                [03:18.44][02:25.06][01:18.45]一切又从头
+                [03:25.99][02:30.17][01:26.81]喔……
+                [88:88:88]
+            </textarea>
+            <textarea class="lrc_content1" style="display: none">
+                [ti:给你们]
+                [ar:张宇]
+                [al:激情苦男人
+                [00:16]词:十一郎 曲:张宇 编曲:MICHAEL THOMPSON
+                [00:16]给你们
+                [00:17][02:24]他将是你的新郎
+                [00:21][02:29]从今以后他就是你一生的伴
+                [00:26][02:34]他的一切都将和你紧密相关
+                [00:30][02:38]福和祸都要同当
+                [00:34][02:42][00:35][02:43]她将是你的新娘
+                [00:39][02:47]她是别人用心托付在你手上
+                [00:44][02:52]你要用你一生加倍照顾对待
+                [00:48][02:56]苦或喜都要同享
+                [00:52][01:47][03:00][03:36]
+                [00:53][01:48][03:01][03:37]一定是特别的缘份
+                [00:57][01:52][03:05][03:42]才可以一路走来变成了一家人
+                [01:02][01:57][03:12][03:47]他多爱你几分
+                [01:05][02:00][03:13][03:49]你多还他几分
+                [01:07][02:02][03:15][03:52]找辛福的可能
+                [01:11][02:06][03:19][03:56]从此不再是一个人
+                [01:15][02:11][03:24][04:00]要处处时时想着念的都是
+                [01:21][02:16][03:29][04:05][04:14]你付出了几分
+                [01:25][02:19][03:33][04:09][04:18]爱就圆满了几分
+                [00:00.009]
+                [99:00.000]
+                [99:00.100]
+            </textarea>
+
+            <div id="jquery_jplayer"></div>
+            <div id="jquery_jplayer1"></div>
+            <div id="player-right">
+                <ul id="lrc_list">
+                    加载歌词……
+                </ul>
+            </div>
+        </div>
+
+
+        <div id="share-more">
+         <span class="bdsharebuttonbox share bdshare-button-style0-16"
+               data-bd-bind="1416195899928" id="share">
+		<span id="share-to">分享到</span>
+		     <span><a title="分享到新浪微博" href="#" class="bds_tsina"
+                      data-cmd="tsina"></a></span>
+             <span><a title="分享到QQ空间" href="#" class="bds_qzone"
+                      data-cmd="qzone"></a></span>
+               <span><a title="分享到微信" href="#" class="bds_weixin"
+                        data-cmd="weixin"></a></span>
+             <span><a title="分享给qq好友" href="#" class="bds_sqq"
+                      data-cmd="sqq"></a></span>
+		      <a href="#" class="bds_more" data-cmd="more" style="display: none"></a>
+    </span>
+        </div>
+    </div>
+    <div id="jp-play"></div>
+</div>
+
+
+<div id="choose" style="display: none">
+    <ul>
+        <li>热歌</li>
+        <li>80后</li>
+        <li>民谣风格</li>
+        <li>甜蜜感受</li>
+        <li>华语</li>
+    </ul>
+    <ul>
+        <li>网络红歌</li>
+        <li>90后</li>
+        <li>轻音乐</li>
+        <li>寂寞</li>
+        <li>韩语</li>
+    </ul>
+    <ul>
+        <li>成名曲</li>
+        <li>儿歌</li>
+        <li>中国风</li>
+        <li>舒缓节奏</li>
+        <li>欧美</li>
+    </ul>
+    <ul>
+        <li>开车</li>
+        <li>夜店</li>
+        <li>电视原声</li>
+        <li>伤感</li>
+        <li>日语</li>
+    </ul>
+    <ul>
+        <li>KTV金曲</li>
+        <li>旅行</li>
+        <li>摇滚</li>
+        <li>快乐旋律</li>
+        <li>粤语</li>
+    </ul>
+</div>
+</body>
+</html>
